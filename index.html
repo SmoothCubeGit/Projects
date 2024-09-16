@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Cube</title>
+    <!-- Favicon link for Pixel Cube image -->
+    <link rel="icon" href="PixelCube.png" type="image/png">
+    <!-- Optional: Additional favicon sizes -->
+    <!-- <link rel="icon" href="PixelCube-32x32.png" type="image/png" sizes="32x32"> -->
+    <!-- <link rel="icon" href="PixelCube-48x48.png" type="image/png" sizes="48x48"> -->
+    <!-- <link rel="icon" href="PixelCube-64x64.png" type="image/png" sizes="64x64"> -->
+    <!-- Optional: Fallback format for older browsers -->
+    <!-- <link rel="icon" href="PixelCube.ico" type="image/x-icon"> -->
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure full viewport height */
+            position: relative; /* Allow absolute positioning inside */
+        }
+        header {
+            background-color: #1e1e1e;
+            padding: 10px;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header img {
+            width: 150px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            margin-right: 10px; /* Space between image and text */
+        }
+        main {
+            flex: 1; /* Grow to fill available space */
+            padding: 20px;
+            text-align: center;
+        }
+        .version-info {
+            background-color: transparent; /* Remove background color */
+            color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px; /* Space above version info */
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: center; /* Center text */
+            white-space: pre-wrap; /* Preserve formatting */
+        }
+        footer {
+            background-color: #1e1e1e;
+            padding: 10px;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+            margin-top: auto; /* Push the footer to the bottom */
+        }
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Style for the centered middle image with scaling effect */
+        .centered-middle-img {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            z-index: -1; /* Ensure it’s behind other content */
+            animation: scaleAnimation 3s infinite; /* Apply scaling animation */
+            background-color: transparent; /* Ensure no background color is applied */
+            border: none; /* Remove any borders */
+        }
+        /* Keyframes for scaling animation */
+        @keyframes scaleAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(1); /* Start at original size */
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2); /* Scale up by 20% */
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1); /* Return to original size */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="folder.png" alt="Smooth Cube Icon">
+        <h1>Smooth Cube</h1>
+    </header>
+
+    <main>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SmoothCube.xyz</p>
+        <p id="json-content" class="version-info">Loading...</p>
+    </footer>
+
+    <img src="PixelCube.png" alt="Pixel Cube" class="centered-middle-img">
+
+    <script>
+        // Function to format JSON data without quotation marks
+        function formatJsonData(data) {
+            return JSON.stringify(data, (key, value) => {
+                if (typeof value === 'string') {
+                    return value; // Return string values without quotes
+                }
+                return value; // Return other values as is
+            }, 2).replace(/"([^"]+)":/g, '$1:'); // Remove quotes from keys
+        }
+
+        // JavaScript to fetch and display JSON data
+        fetch('https://smooth-cube-web-default-rtdb.firebaseio.com/Version.json')
+            .then(response => response.json())
+            .then(data => {
+                const jsonContentDiv = document.getElementById('json-content');
+                jsonContentDiv.textContent = formatJsonData(data); // Format JSON for readability
+            })
+            .catch(error => {
+                const jsonContentDiv = document.getElementById('json-content');
+                jsonContentDiv.textContent = 'Failed to load JSON data.';
+                console.error('Error fetching JSON data:', error);
+            });
+    </script>
+</body>
+</html>
