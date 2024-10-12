@@ -62,29 +62,6 @@
         a:hover {
             text-decoration: underline;
         }
-        .centered-middle-img {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150px;
-            height: 150px;
-            z-index: -1;
-            animation: scaleAnimation 3s infinite;
-            background-color: transparent;
-            border: none;
-        }
-        @keyframes scaleAnimation {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
         /* Style for the button */
         .button {
             display: inline-block;
@@ -116,8 +93,6 @@
         <p>&copy; 2024 SmoothCube.xyz</p>
         <p id="json-content" class="version-info">Loading...</p>
     </footer>
-
-    <img src="PixelCube.png" alt="Pixel Cube" class="centered-middle-img">
 
     <script>
         function formatJsonData(data) {
