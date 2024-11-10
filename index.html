@@ -25,15 +25,16 @@
       position: relative;
     }
 
-    /* Background scanline container */
+    /* Seamless scanline background */
     .scanline-background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 200%; /* Double height for smooth scrolling */
-      background: linear-gradient(transparent 3px, rgba(255, 255, 255, 0.05) 3px) repeat-y;
-      background-size: 100% 4px; /* Height of each scanline */
+      background: repeating-linear-gradient(
+        transparent 2px, rgba(255, 255, 255, 0.1) 3px, transparent 4px
+      );
       z-index: -1;
     }
 
@@ -149,16 +150,13 @@
     // Start typing the main text
     typeMainText();
 
-    // JavaScript for scrolling background effect
+    // JavaScript for seamless scrolling background effect
     const scanlineBackground = document.getElementById("scanlineBackground");
     let offset = 0;
 
     function animateBackground() {
-      offset += 1; // Adjust scrolling speed here
-      scanlineBackground.style.transform = `translateY(${offset}px)`;
-      if (offset >= window.innerHeight) {
-        offset = 0; // Reset once it scrolls past the viewport height
-      }
+      offset += 0.5; // Adjust scrolling speed here
+      scanlineBackground.style.backgroundPositionY = `${offset}px`;
       requestAnimationFrame(animateBackground);
     }
 
