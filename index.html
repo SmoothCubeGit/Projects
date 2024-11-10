@@ -33,7 +33,7 @@
       white-space: nowrap;
       overflow: hidden;
       position: relative;
-      z-index: 2; /* Ensure text is above the blur panel */
+      z-index: 2; /* Ensure text is above the cube */
     }
 
     h1 {
@@ -100,7 +100,7 @@
       width: 300px;
       height: 300px;
       perspective: 600px; /* Perspective to enhance 3D effect */
-      z-index: -2; /* Send the cube behind the blur panel */
+      z-index: -2; /* Send the cube behind the text */
     }
 
     .cube {
@@ -133,24 +133,9 @@
       100% { transform: rotateX(360deg) rotateY(360deg); }
     }
 
-    /* Blurred panel styles */
-    .blurred-panel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7); /* Slight dark tint */
-      filter: blur(15px); /* Blur effect */
-      z-index: -1; /* Place the blur effect behind the text */
-    }
-
   </style>
 </head>
 <body>
-  <!-- Blurred background panel -->
-  <div class="blurred-panel"></div>
-
   <!-- 3D Spinning Cube -->
   <div class="cube-wrapper">
     <div class="cube">
