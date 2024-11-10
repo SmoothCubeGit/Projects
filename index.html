@@ -18,15 +18,26 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       overflow: hidden;
-      /* Create scanlines effect */
+      position: relative;
+      background-color: black;
+    }
+
+    /* Background scanlines effect */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: 
         linear-gradient(transparent 3px, rgba(255, 255, 255, 0.05) 3px) repeat-y;
       background-size: 100% 4px; /* Height of each scanline */
       animation: scrollBackground 5s linear infinite;
+      z-index: -1; /* Send to back so text appears above */
     }
 
     h1, h2 {
