@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmoothCube.xyz</title>
+  <title>SmoothCube.xyz - Genesis Game Engine</title>
   <style>
     /* Reset and basic styles */
     * {
@@ -13,77 +13,117 @@
     }
 
     body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
       background-color: #000;
       color: #fff;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
     }
 
     h1, h2 {
-      font-size: 4rem;
-      color: white;
       text-transform: uppercase;
-      font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
-      position: relative;
     }
 
     h1 {
-      border-right: 2px solid;
+      font-size: 4rem;
+      font-weight: bold;
+      border-right: 2px solid white;
       animation: blinkCursor 0.7s steps(2) infinite;
     }
 
     h2 {
       font-size: 2rem;
       margin-top: 20px;
-      opacity: 0; /* Start invisible */
+      opacity: 0;
     }
 
-    /* Glitch effect using pseudo-elements */
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: white;
-      overflow: hidden;
-      clip: rect(0, 900px, 0, 0);
+    /* Content Sections */
+    .content {
+      width: 80%;
+      max-width: 800px;
+      margin: 40px 0;
+      text-align: center;
     }
 
-    .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 red;
-      animation: glitch 1.5s infinite linear;
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      font-weight: bold;
+      color: #ff5500;
     }
 
-    .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 blue;
-      animation: glitch 1.5s infinite linear reverse;
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #ff5500;
+      margin: 10px auto;
     }
 
-    /* Glitch animation */
-    @keyframes glitch {
-      0%, 100% { clip: rect(0, 900px, 0, 0); }
-      10% { clip: rect(10px, 9999px, 120px, 0); }
-      20% { clip: rect(80px, 9999px, 30px, 0); }
-      30% { clip: rect(40px, 9999px, 90px, 0); }
-      40% { clip: rect(70px, 9999px, 50px, 0); }
-      50% { clip: rect(60px, 9999px, 80px, 0); }
-      60% { clip: rect(20px, 9999px, 40px, 0); }
-      70% { clip: rect(50px, 9999px, 70px, 0); }
-      80% { clip: rect(90px, 9999px, 20px, 0); }
-      90% { clip: rect(40px, 9999px, 90px, 0); }
+    .section-content {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: #ddd;
     }
 
-    /* Blinking cursor */
+    /* Features Section */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .feature {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 8px;
+      width: 250px;
+      text-align: left;
+      color: #fff;
+    }
+
+    .feature h3 {
+      font-size: 1.5rem;
+      color: #ff5500;
+      margin-bottom: 10px;
+    }
+
+    /* Call to Action */
+    .cta {
+      background-color: #ff5500;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 40px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background-color: #ff3300;
+    }
+
+    /* Keyframes */
     @keyframes blinkCursor {
       0%, 100% { border-color: transparent; }
       50% { border-color: white; }
@@ -91,10 +131,54 @@
   </style>
 </head>
 <body>
-  <h1 class="glitch" data-text="SmoothCube.xyz"></h1>
-  <h2 id="subtext">Your digital playground</h2>
+  <!-- Header Section -->
+  <div class="header">
+    <h1 class="glitch" data-text="SmoothCube.xyz"></h1>
+    <h2 id="subtext">Your digital playground</h2>
+  </div>
+
+  <!-- Introduction to Genesis -->
+  <section class="content">
+    <h2 class="section-title">Introducing Genesis</h2>
+    <p class="section-content">
+      Genesis is our state-of-the-art game engine built to bring your creative visions to life.
+      With powerful tools, an intuitive interface, and unmatched performance, Genesis is designed for both
+      beginner and professional developers. Unleash your imagination and build worlds with Genesis.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="content">
+    <h2 class="section-title">Features</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Visual Scripting</h3>
+        <p>Easily bring game logic to life with a powerful visual scripting system that requires no coding experience.</p>
+      </div>
+      <div class="feature">
+        <h3>Advanced Physics</h3>
+        <p>Simulate realistic physics with built-in tools, making it perfect for complex and interactive game worlds.</p>
+      </div>
+      <div class="feature">
+        <h3>Cross-Platform Support</h3>
+        <p>Develop games for multiple platforms effortlessly with Genesis’s versatile build options.</p>
+      </div>
+      <div class="feature">
+        <h3>High Performance</h3>
+        <p>Genesis is optimized for smooth gameplay and graphics, offering top-notch performance on any device.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="content">
+    <div class="cta" onclick="window.location.href='#'">
+      Get Started with Genesis
+    </div>
+  </section>
 
   <script>
+    // Typing Effect for Main Text
     const mainText = "SmoothCube.xyz";
     const subText = "Your digital playground";
     const h1 = document.querySelector("h1");
@@ -107,17 +191,15 @@
         index++;
         setTimeout(typeMainText, 150); // Adjust speed here
       } else {
-        // Hide the cursor animation once typing is complete
         h1.style.borderRight = "none";
-        // Start typing subtext after a short delay
         setTimeout(typeSubText, 500);
       }
     }
 
     function typeSubText() {
       let subIndex = 0;
-      h2.style.opacity = 1; // Make subtext visible
-      h2.innerHTML = "";    // Clear any existing text (just in case)
+      h2.style.opacity = 1;
+      h2.innerHTML = "";
 
       function typeSubTextEffect() {
         if (subIndex < subText.length) {
@@ -126,7 +208,6 @@
           setTimeout(typeSubTextEffect, 100); // Adjust subtext speed here
         }
       }
-
       typeSubTextEffect();
     }
 
