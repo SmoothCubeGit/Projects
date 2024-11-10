@@ -36,6 +36,21 @@
       z-index: 2; /* Ensure text is above the cube */
     }
 
+    /* Add a black outline behind the text */
+    h1::before, h2::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: black;
+      z-index: -1;
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-weight: bold;
+      font-size: inherit;
+      text-transform: inherit;
+    }
+
     h1 {
       border-right: 2px solid;
       animation: blinkCursor 0.7s steps(2) infinite;
@@ -117,7 +132,6 @@
       height: 100%;
       background-color: rgba(255, 255, 255, 0.1); /* Transparent faces */
       border: 5px solid white; /* Thicker white borders */
-      box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7); /* Neon-like glowing effect */
     }
 
     /* Faces of the cube */
