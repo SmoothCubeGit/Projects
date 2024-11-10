@@ -43,6 +43,7 @@
       font-size: 2rem;
       margin-top: 20px;
       opacity: 0; /* Start invisible */
+      transition: opacity 0.3s ease; /* Smoothly fade in/out */
     }
 
     /* Glitch effect using pseudo-elements */
@@ -124,6 +125,11 @@
           h2.innerHTML += subText[subIndex];
           subIndex++;
           setTimeout(typeSubTextEffect, 100); // Adjust subtext speed here
+        } else {
+          // Hide the subtext after a delay when typing is complete
+          setTimeout(() => {
+            h2.style.opacity = 0;
+          }, 1000); // Delay before hiding
         }
       }
 
