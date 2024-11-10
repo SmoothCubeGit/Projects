@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SmoothCube.xyz</title>
   <style>
-    /* Reset and basic styles */
     * {
       margin: 0;
       padding: 0;
@@ -29,32 +28,37 @@
       font-size: 4rem;
       color: white;
       text-transform: uppercase;
-      font-weight: bold;
+      font-weight: 900; /* Increased font weight */
       white-space: nowrap;
       overflow: hidden;
       position: relative;
       z-index: 2;
-      /* Enhanced text outline using multiple shadows */
+      /* Enhanced thicker outline with multiple layers */
       text-shadow: 
+        /* Inner outline */
         -1px -1px 0 #000,  
          1px -1px 0 #000,
         -1px  1px 0 #000,
          1px  1px 0 #000,
+        /* Middle outline */
         -2px -2px 0 #000,  
          2px -2px 0 #000,
         -2px  2px 0 #000,
          2px  2px 0 #000,
-        0 0 8px rgba(0,0,0,0.8),
-        0 0 16px rgba(0,0,0,0.6);
-    }
-
-    /* Remove the previous outline method */
-    h1::before, h2::before {
-      display: none;
+        /* Outer outline */
+        -3px -3px 0 #000,
+         3px -3px 0 #000,
+        -3px  3px 0 #000,
+         3px  3px 0 #000,
+        /* Glow effects */
+        0 0 10px rgba(255,255,255,0.3),
+        0 0 20px rgba(255,255,255,0.2),
+        0 0 30px rgba(255,255,255,0.1),
+        0 0 40px rgba(0,0,0,0.8);
     }
 
     h1 {
-      border-right: 2px solid;
+      border-right: 3px solid; /* Thicker cursor */
       animation: blinkCursor 0.7s steps(2) infinite;
     }
 
@@ -64,55 +68,79 @@
       opacity: 0;
     }
 
-    /* Improved glitch effect with better visibility */
+    /* Enhanced glitch effect */
+    .glitch {
+      animation: textShadowPulse 2s infinite;
+    }
+
     .glitch::before,
     .glitch::after {
       content: attr(data-text);
       position: absolute;
       top: 0;
-      left: 0;
-      color: white;
-      overflow: hidden;
+      width: 100%;
+      background: black;
       clip: rect(0, 900px, 0, 0);
-      text-shadow: 
-        -1px -1px 0 #000,  
-         1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000;
+      animation: glitch 3s infinite linear alternate-reverse;
     }
 
     .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 red,
+      left: 3px;
+      text-shadow: 
+        -2px 0 #ff0000,
+        -4px 0 #ff0000,
+        2px 2px #ff0000,
+        /* Maintain outline visibility */
         -1px -1px 0 #000,  
          1px -1px 0 #000,
         -1px  1px 0 #000,
          1px  1px 0 #000;
-      animation: glitch 1.5s infinite linear;
+      animation: glitch 4s infinite linear alternate-reverse,
+                 glitchOffset 4s infinite linear alternate-reverse;
     }
 
     .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 blue,
+      left: -3px;
+      text-shadow: 
+        -2px 0 #0000ff,
+        -4px 0 #0000ff,
+        2px 2px #0000ff,
+        /* Maintain outline visibility */
         -1px -1px 0 #000,  
          1px -1px 0 #000,
         -1px  1px 0 #000,
          1px  1px 0 #000;
-      animation: glitch 1.5s infinite linear reverse;
+      animation: glitch 3s infinite linear alternate-reverse,
+                 glitchOffset 3s infinite linear alternate-reverse;
     }
 
-    /* Rest of your existing styles remain the same */
+    /* Enhanced glitch animations */
     @keyframes glitch {
-      0%, 100% { clip: rect(0, 900px, 0, 0); }
-      10% { clip: rect(10px, 9999px, 120px, 0); }
-      20% { clip: rect(80px, 9999px, 30px, 0); }
-      30% { clip: rect(40px, 9999px, 90px, 0); }
-      40% { clip: rect(70px, 9999px, 50px, 0); }
-      50% { clip: rect(60px, 9999px, 80px, 0); }
-      60% { clip: rect(20px, 9999px, 40px, 0); }
-      70% { clip: rect(50px, 9999px, 70px, 0); }
-      80% { clip: rect(90px, 9999px, 20px, 0); }
-      90% { clip: rect(40px, 9999px, 90px, 0); }
+      0% { clip: rect(36px, 900px, 36px, 0); }
+      10% { clip: rect(144px, 9999px, 144px, 0); transform: skew(0.5deg); }
+      20% { clip: rect(22px, 9999px, 22px, 0); transform: skew(-0.5deg); }
+      30% { clip: rect(96px, 9999px, 96px, 0); transform: skew(0.2deg); }
+      40% { clip: rect(180px, 9999px, 180px, 0); transform: skew(-0.8deg); }
+      50% { clip: rect(24px, 9999px, 24px, 0); transform: skew(0.5deg); }
+      60% { clip: rect(82px, 9999px, 82px, 0); transform: skew(0.7deg); }
+      70% { clip: rect(191px, 9999px, 191px, 0); transform: skew(0.2deg); }
+      80% { clip: rect(28px, 9999px, 28px, 0); transform: skew(-0.2deg); }
+      90% { clip: rect(140px, 9999px, 140px, 0); transform: skew(0.5deg); }
+      100% { clip: rect(96px, 9999px, 96px, 0); transform: skew(-0.8deg); }
+    }
+
+    @keyframes glitchOffset {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(2px); }
+      50% { transform: translateX(-2px); }
+      75% { transform: translateX(1px); }
+      100% { transform: translateX(-1px); }
+    }
+
+    @keyframes textShadowPulse {
+      0% { text-shadow: 0 0 4px #fff, 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #0ff; }
+      50% { text-shadow: 0 0 4px #fff, 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #f0f; }
+      100% { text-shadow: 0 0 4px #fff, 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #0ff; }
     }
 
     @keyframes blinkCursor {
@@ -145,6 +173,8 @@
       height: 100%;
       background-color: rgba(255, 255, 255, 0.1);
       border: 5px solid white;
+      /* Add slight glow to cube faces */
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     }
 
     .front  { transform: translateZ(150px); }
