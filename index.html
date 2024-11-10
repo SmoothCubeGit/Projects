@@ -33,22 +33,23 @@
       white-space: nowrap;
       overflow: hidden;
       position: relative;
-      z-index: 2; /* Ensure text is above the cube */
+      z-index: 3; /* Ensure text is above the cube */
     }
 
-    /* Add a black outline behind the text */
+    /* Add a thicker black outline behind the text, but ensure it's behind the glitch effect */
     h1::before, h2::before {
       content: attr(data-text);
       position: absolute;
       top: 0;
       left: 0;
       color: black;
-      z-index: -1;
-      -webkit-background-clip: text;
-      background-clip: text;
+      z-index: 1; /* Positioned behind the glitch effect */
       font-weight: bold;
       font-size: inherit;
       text-transform: inherit;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 0 10px black; /* Thicker black shadow effect */
     }
 
     h1 {
