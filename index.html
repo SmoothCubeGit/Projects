@@ -18,24 +18,10 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       overflow: hidden;
-      background-color: black; /* Base black background */
-      position: relative;
-    }
-
-    /* Seamless scanline background */
-    .scanline-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200%; /* Double height for smooth scrolling */
-      background: repeating-linear-gradient(
-        transparent 2px, rgba(255, 255, 255, 0.1) 3px, transparent 4px
-      );
-      z-index: -1;
     }
 
     h1, h2 {
@@ -105,13 +91,10 @@
   </style>
 </head>
 <body>
-  <div class="scanline-background" id="scanlineBackground"></div> <!-- Background scanline div -->
-
   <h1 class="glitch" data-text="SmoothCube.xyz"></h1>
   <h2 id="subtext">Your digital playground</h2>
 
   <script>
-    // JavaScript for typing text effect
     const mainText = "SmoothCube.xyz";
     const subText = "Your digital playground";
     const h1 = document.querySelector("h1");
@@ -149,19 +132,6 @@
 
     // Start typing the main text
     typeMainText();
-
-    // JavaScript for seamless scrolling background effect
-    const scanlineBackground = document.getElementById("scanlineBackground");
-    let offset = 0;
-
-    function animateBackground() {
-      offset += 0.5; // Adjust scrolling speed here
-      scanlineBackground.style.backgroundPositionY = `${offset}px`;
-      requestAnimationFrame(animateBackground);
-    }
-
-    // Start the background animation
-    animateBackground();
   </script>
 </body>
 </html>
