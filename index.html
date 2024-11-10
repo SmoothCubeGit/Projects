@@ -3,155 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome Hacker</title>
+  <title>SmoothCube.xyz</title>
   <style>
-    /* Basic Styles */
-    body {
+    /* Reset and basic styles */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      background-color: #000000;
-      color: #00ff00;
-      font-family: "Courier New", monospace;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
       overflow: hidden;
     }
 
-    /* Terminal container */
-    .terminal {
-      background-color: #002200;
-      border: 10px solid #003300;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-      width: 600px;
-      max-width: 90%;
+    h1 {
+      font-size: 4rem;
       position: relative;
-    }
-
-    /* Flicker effect */
-    .flicker {
-      animation: flicker 2s infinite alternate;
-    }
-
-    /* Typing effect */
-    .welcome-text {
-      font-size: 1.5rem;
-      line-height: 1.5;
-      white-space: pre-wrap;
-      color: #00ff00;
-      overflow: hidden;
-      border-right: .15em solid #00ff00;
-      animation: typing 3s steps(30, end), blink .5s step-end infinite alternate;
-    }
-
-    /* Glitch animation for "Welcome, Hacker" */
-    .glitch {
-      font-size: 2rem;
+      color: white;
+      text-transform: uppercase;
       font-weight: bold;
-      position: relative;
-      color: #00ff00;
-      animation: glitch 1s infinite alternate;
+      animation: glitch 1.5s infinite;
     }
 
-    /* Screen scan line effect */
-    .scanlines::before {
-      content: '';
+    /* Glitch effect using pseudo-elements */
+    h1::before,
+    h1::after {
+      content: 'SmoothCube.xyz';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 255, 0, 0.05) 0px,
-        rgba(0, 255, 0, 0.05) 1px,
-        transparent 2px,
-        transparent 3px
-      );
-      pointer-events: none;
-      mix-blend-mode: multiply;
+      color: white;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
     }
 
-    /* Glitch, flicker, and typing animations */
+    h1::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      animation: glitch 1.5s infinite linear;
+    }
+
+    h1::after {
+      left: -2px;
+      text-shadow: -2px 0 blue;
+      animation: glitch 1.5s infinite linear reverse;
+    }
+
+    /* Glitch animation */
     @keyframes glitch {
-      0%, 100% { opacity: 1; text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
-      50% { opacity: 0.7; text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
-    }
-
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.5; }
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
+      0%, 100% { clip: rect(0, 900px, 0, 0); }
+      10% { clip: rect(10px, 9999px, 120px, 0); }
+      20% { clip: rect(80px, 9999px, 30px, 0); }
+      30% { clip: rect(40px, 9999px, 90px, 0); }
+      40% { clip: rect(70px, 9999px, 50px, 0); }
+      50% { clip: rect(60px, 9999px, 80px, 0); }
+      60% { clip: rect(20px, 9999px, 40px, 0); }
+      70% { clip: rect(50px, 9999px, 70px, 0); }
+      80% { clip: rect(90px, 9999px, 20px, 0); }
+      90% { clip: rect(40px, 9999px, 90px, 0); }
     }
   </style>
 </head>
 <body>
-  <div class="terminal scanlines">
-    <div class="glitch flicker">Welcome, Hacker</div>
-    <p class="welcome-text" id="welcomeText"></p>
-  </div>
-
-  <script>
-    const message = `
-Initializing system...
-  ...
-Welcome to the CyberTerminal.
-
-You are now connected to the network.
-
-Begin your journey...
-`;
-
-    // Typing effect
-    const welcomeTextElement = document.getElementById('welcomeText');
-    let index = 0;
-
-    function typeText() {
-      if (index < message.length) {
-        // Add random glitches as it types
-        const char = message.charAt(index);
-        welcomeTextElement.innerHTML += Math.random() < 0.1 && char !== '\n' 
-          ? String.fromCharCode(65 + Math.floor(Math.random() * 26))  // Random letter glitch
-          : char;
-        index++;
-        setTimeout(typeText, 50);
-      }
-    }
-
-    // Start typing after a slight delay
-    setTimeout(typeText, 500);
-
-    // Optional: Add typing sound (uncomment if needed)
-    /*
-    function playTypingSound() {
-      const audio = new Audio('path-to-typing-sound.wav');  // Provide a path to a typing sound effect
-      audio.volume = 0.1;
-      audio.play();
-    }
-
-    function typeTextWithSound() {
-      if (index < message.length) {
-        const char = message.charAt(index);
-        welcomeTextElement.innerHTML += char;
-        playTypingSound();
-        index++;
-        setTimeout(typeTextWithSound, 50);
-      }
-    }
-
-    setTimeout(typeTextWithSound, 500);
-    */
-  </script>
+  <h1>SmoothCube.xyz</h1>
 </body>
 </html>
