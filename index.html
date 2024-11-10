@@ -19,7 +19,7 @@
       overflow: hidden;
     }
 
-    /* Container for the old-style computer screen */
+    /* Terminal container */
     .terminal {
       background-color: #002200;
       border: 10px solid #003300;
@@ -28,9 +28,15 @@
       box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
       width: 600px;
       max-width: 90%;
+      position: relative;
     }
 
-    /* Typing effect for welcome message */
+    /* Flicker effect */
+    .flicker {
+      animation: flicker 2s infinite alternate;
+    }
+
+    /* Typing effect */
     .welcome-text {
       font-size: 1.5rem;
       line-height: 1.5;
@@ -41,7 +47,45 @@
       animation: typing 3s steps(30, end), blink .5s step-end infinite alternate;
     }
 
-    /* Animations for typing effect */
+    /* Glitch animation for "Welcome, Hacker" */
+    .glitch {
+      font-size: 2rem;
+      font-weight: bold;
+      position: relative;
+      color: #00ff00;
+      animation: glitch 1s infinite alternate;
+    }
+
+    /* Screen scan line effect */
+    .scanlines::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 0, 0.05) 0px,
+        rgba(0, 255, 0, 0.05) 1px,
+        transparent 2px,
+        transparent 3px
+      );
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    /* Glitch, flicker, and typing animations */
+    @keyframes glitch {
+      0%, 100% { opacity: 1; text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
+      50% { opacity: 0.7; text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.5; }
+    }
+
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
@@ -50,31 +94,15 @@
     @keyframes blink {
       50% { border-color: transparent }
     }
-
-    /* Glitch effect on "Welcome, Hacker" */
-    .glitch {
-      font-size: 2rem;
-      font-weight: bold;
-      position: relative;
-      color: #00ff00;
-      animation: glitch 1s infinite;
-    }
-
-    /* Flickering and glitching effect */
-    @keyframes glitch {
-      0%, 100% { opacity: 1; text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
-      50% { opacity: 0.7; text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
-    }
   </style>
 </head>
 <body>
-  <div class="terminal">
-    <div class="glitch">Welcome, Hacker</div>
+  <div class="terminal scanlines">
+    <div class="glitch flicker">Welcome, Hacker</div>
     <p class="welcome-text" id="welcomeText"></p>
   </div>
 
   <script>
-    // Message to type
     const message = `
 Initializing system...
   ...
@@ -85,13 +113,17 @@ You are now connected to the network.
 Begin your journey...
 `;
 
-    // Typing effect for the welcome message
+    // Typing effect
     const welcomeTextElement = document.getElementById('welcomeText');
     let index = 0;
 
     function typeText() {
       if (index < message.length) {
-        welcomeTextElement.innerHTML += message.charAt(index);
+        // Add random glitches as it types
+        const char = message.charAt(index);
+        welcomeTextElement.innerHTML += Math.random() < 0.1 && char !== '\n' 
+          ? String.fromCharCode(65 + Math.floor(Math.random() * 26))  // Random letter glitch
+          : char;
         index++;
         setTimeout(typeText, 50);
       }
@@ -99,6 +131,27 @@ Begin your journey...
 
     // Start typing after a slight delay
     setTimeout(typeText, 500);
+
+    // Optional: Add typing sound (uncomment if needed)
+    /*
+    function playTypingSound() {
+      const audio = new Audio('path-to-typing-sound.wav');  // Provide a path to a typing sound effect
+      audio.volume = 0.1;
+      audio.play();
+    }
+
+    function typeTextWithSound() {
+      if (index < message.length) {
+        const char = message.charAt(index);
+        welcomeTextElement.innerHTML += char;
+        playTypingSound();
+        index++;
+        setTimeout(typeTextWithSound, 50);
+      }
+    }
+
+    setTimeout(typeTextWithSound, 500);
+    */
   </script>
 </body>
 </html>
