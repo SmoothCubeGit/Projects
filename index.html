@@ -3,145 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmoothCube.xyz - Hacker Edition</title>
+  <title>Welcome Hacker</title>
   <style>
-    /* General styles */
+    /* Basic Styles */
     body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
       background-color: #000000;
-      font-family: "Courier New", monospace;
       color: #00ff00;
+      font-family: "Courier New", monospace;
       overflow: hidden;
     }
 
-    .bg-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
-      opacity: 0.15;
-      z-index: 0;
-      animation: flicker 3s infinite;
+    /* Container for the old-style computer screen */
+    .terminal {
+      background-color: #002200;
+      border: 10px solid #003300;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      width: 600px;
+      max-width: 90%;
     }
 
-    /* Glitch effect */
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 rgba(255, 0, 0, 0.7), -2px 0 rgba(0, 255, 0, 0.7); }
-      20% { text-shadow: -2px 0 rgba(255, 0, 0, 0.7), 2px 0 rgba(0, 255, 0, 0.7); }
-      40% { text-shadow: 2px 0 rgba(0, 0, 255, 0.7), -2px 0 rgba(0, 255, 0, 0.7); }
-      60% { text-shadow: -2px 0 rgba(255, 0, 0, 0.7), 2px 0 rgba(0, 0, 255, 0.7); }
-      80% { text-shadow: 2px 0 rgba(0, 255, 0, 0.7), -2px 0 rgba(255, 0, 0, 0.7); }
-      100% { text-shadow: -2px 0 rgba(255, 0, 0, 0.7), 2px 0 rgba(0, 255, 0, 0.7); }
-    }
-
-    @keyframes flicker {
-      0%, 19.999%, 22%, 62.999%, 64%, 99.999% {
-        opacity: 0.99;
-      }
-      20%, 63% {
-        opacity: 0.4;
-      }
-      64.001%, 100% {
-        opacity: 1;
-      }
-    }
-
-    .glitch {
-      font-size: 4rem;
-      font-weight: bold;
+    /* Typing effect for welcome message */
+    .welcome-text {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
       color: #00ff00;
-      animation: glitch 1s infinite linear;
-      text-transform: uppercase;
+      overflow: hidden;
+      border-right: .15em solid #00ff00;
+      animation: typing 3s steps(30, end), blink .5s step-end infinite alternate;
     }
 
-    .feature-card {
-      border: 1px solid #003300;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      transition: background-color 0.3s;
-      margin: 0.5rem;
+    /* Animations for typing effect */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
 
-    .feature-card:hover {
-      background-color: rgba(0, 255, 0, 0.1);
-      border-color: #00ff00;
+    @keyframes blink {
+      50% { border-color: transparent }
     }
 
-    .icon {
+    /* Glitch effect on "Welcome, Hacker" */
+    .glitch {
       font-size: 2rem;
-      color: #ffbf00;
-      margin-right: 0.5rem;
+      font-weight: bold;
+      position: relative;
+      color: #00ff00;
+      animation: glitch 1s infinite;
     }
 
-    .footer {
-      color: #006600;
+    /* Flickering and glitching effect */
+    @keyframes glitch {
+      0%, 100% { opacity: 1; text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
+      50% { opacity: 0.7; text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
     }
   </style>
 </head>
 <body>
-  <div class="bg-pattern"></div>
-  <div class="content" style="z-index: 1;">
-    <h1 class="glitch" id="glitchText">SmoothCube.xyz</h1>
-    <p id="currentWord" style="color: #ffbf00; font-size: 2rem; margin-bottom: 1rem;"></p>
-    <div class="features" style="display: flex; flex-direction: column; align-items: center;">
-      <div class="feature-card">
-        <span class="icon">&#128274;</span> 
-        <strong>Encrypted Vault</strong>
-        <p>State-of-the-art quantum encryption for your data.</p>
-      </div>
-      <div class="feature-card">
-        <span class="icon">&#128187;</span> 
-        <strong>Retro Terminal</strong>
-        <p>Access your data through our vintage-style CLI.</p>
-      </div>
-      <div class="feature-card">
-        <span class="icon">&#128126;</span> 
-        <strong>Cybernetic Core</strong>
-        <p>AI-powered system for unmatched performance.</p>
-      </div>
-    </div>
-    <footer class="footer">
-      <p>© 2024 SmoothCube.xyz | Cyberpunk Nostalgia Edition v1.0.1</p>
-    </footer>
+  <div class="terminal">
+    <div class="glitch">Welcome, Hacker</div>
+    <p class="welcome-text">
+Initializing system...
+  ...
+Welcome to the CyberTerminal.
+
+You are now connected to the network.
+
+Begin your journey...
+    </p>
   </div>
 
   <script>
-    let words = ['Secure', 'Encrypted', 'Quantum', 'Cyberpunk', 'Retro'];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let currentWord = '';
+    // Simple typing effect for welcome message
+    const welcomeText = document.querySelector('.welcome-text');
+    const message = `
+Initializing system...
+  ...
+Welcome to the CyberTerminal.
 
-    function typeWord() {
-      if (charIndex < words[wordIndex].length) {
-        currentWord += words[wordIndex][charIndex];
-        document.getElementById('currentWord').textContent = currentWord + '_';
-        charIndex++;
-        setTimeout(typeWord, 100);
-      } else {
-        setTimeout(() => {
-          currentWord = '';
-          charIndex = 0;
-          wordIndex = (wordIndex + 1) % words.length;
-          typeWord();
-        }, 1000);
+You are now connected to the network.
+
+Begin your journey...
+`;
+    let index = 0;
+
+    function typeText() {
+      if (index < message.length) {
+        welcomeText.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeText, 50);
       }
     }
 
-    function glitchTextEffect() {
-      let text = document.getElementById('glitchText').textContent;
-      document.getElementById('glitchText').textContent = text.split('').map(char => 
-        Math.random() < 0.1 ? String.fromCharCode(Math.floor(Math.random() * 26) + 65) : char
-      ).join('');
-      setTimeout(glitchTextEffect, 100);
-    }
-
-    glitchTextEffect();
-    typeWord();
+    setTimeout(typeText, 500); // Start typing after a slight delay
   </script>
 </body>
 </html>
