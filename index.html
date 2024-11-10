@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmoothCube.xyz</title>
-  <link href="https://cdn.jsdelivr.net/npm/lucide@0.49.0/dist/lucide.min.css" rel="stylesheet">
+  <title>SmoothCube.xyz - Hacker Edition</title>
   <style>
     /* General styles */
     body {
@@ -14,48 +13,71 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: black;
-      font-family: monospace;
+      background-color: #000000;
+      font-family: "Courier New", monospace;
       color: #00ff00;
+      overflow: hidden;
     }
 
     .bg-pattern {
       position: absolute;
       inset: 0;
       background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
-      opacity: 0.2;
+      opacity: 0.15;
+      z-index: 0;
+      animation: flicker 3s infinite;
     }
 
     /* Glitch effect */
     @keyframes glitch {
-      0% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
-      100% { text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75); }
+      0% { text-shadow: 2px 0 rgba(255, 0, 0, 0.7), -2px 0 rgba(0, 255, 0, 0.7); }
+      20% { text-shadow: -2px 0 rgba(255, 0, 0, 0.7), 2px 0 rgba(0, 255, 0, 0.7); }
+      40% { text-shadow: 2px 0 rgba(0, 0, 255, 0.7), -2px 0 rgba(0, 255, 0, 0.7); }
+      60% { text-shadow: -2px 0 rgba(255, 0, 0, 0.7), 2px 0 rgba(0, 0, 255, 0.7); }
+      80% { text-shadow: 2px 0 rgba(0, 255, 0, 0.7), -2px 0 rgba(255, 0, 0, 0.7); }
+      100% { text-shadow: -2px 0 rgba(255, 0, 0, 0.7), 2px 0 rgba(0, 255, 0, 0.7); }
+    }
+
+    @keyframes flicker {
+      0%, 19.999%, 22%, 62.999%, 64%, 99.999% {
+        opacity: 0.99;
+      }
+      20%, 63% {
+        opacity: 0.4;
+      }
+      64.001%, 100% {
+        opacity: 1;
+      }
     }
 
     .glitch {
       font-size: 4rem;
       font-weight: bold;
-      color: #ff0;
+      color: #00ff00;
       animation: glitch 1s infinite linear;
+      text-transform: uppercase;
     }
 
     .feature-card {
-      border: 1px solid #006600;
-      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #003300;
+      background: rgba(0, 0, 0, 0.7);
       padding: 1rem;
       border-radius: 0.5rem;
       transition: background-color 0.3s;
+      margin: 0.5rem;
     }
 
     .feature-card:hover {
-      background-color: rgba(0, 255, 0, 0.2);
+      background-color: rgba(0, 255, 0, 0.1);
+      border-color: #00ff00;
     }
 
     .icon {
       font-size: 2rem;
-      color: #ff0;
+      color: #ffbf00;
+      margin-right: 0.5rem;
     }
-    
+
     .footer {
       color: #006600;
     }
@@ -63,10 +85,10 @@
 </head>
 <body>
   <div class="bg-pattern"></div>
-  <div class="content">
+  <div class="content" style="z-index: 1;">
     <h1 class="glitch" id="glitchText">SmoothCube.xyz</h1>
-    <p id="currentWord" style="color: #ffbf00; font-size: 2rem;"></p>
-    <div class="features">
+    <p id="currentWord" style="color: #ffbf00; font-size: 2rem; margin-bottom: 1rem;"></p>
+    <div class="features" style="display: flex; flex-direction: column; align-items: center;">
       <div class="feature-card">
         <span class="icon">&#128274;</span> 
         <strong>Encrypted Vault</strong>
@@ -78,7 +100,7 @@
         <p>Access your data through our vintage-style CLI.</p>
       </div>
       <div class="feature-card">
-        <span class="icon">&#128187;</span> 
+        <span class="icon">&#128126;</span> 
         <strong>Cybernetic Core</strong>
         <p>AI-powered system for unmatched performance.</p>
       </div>
