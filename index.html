@@ -22,6 +22,9 @@
       color: #fff;
       font-family: Arial, sans-serif;
       overflow: hidden;
+      background: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) repeat-y;
+      background-size: 100% 4px;
+      animation: scrollBackground 10s infinite linear;
     }
 
     h1, h2 {
@@ -87,6 +90,12 @@
     @keyframes blinkCursor {
       0%, 100% { border-color: transparent; }
       50% { border-color: white; }
+    }
+
+    /* Background scroll effect */
+    @keyframes scrollBackground {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 0; }
     }
   </style>
 </head>
