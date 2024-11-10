@@ -29,13 +29,16 @@
       color: white;
       text-transform: uppercase;
       font-weight: bold;
-      animation: glitch 1.5s infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid;
+      animation: blinkCursor 0.7s steps(2) infinite;
     }
 
     /* Glitch effect using pseudo-elements */
-    h1::before,
-    h1::after {
-      content: 'SmoothCube.xyz';
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
       position: absolute;
       top: 0;
       left: 0;
@@ -44,13 +47,13 @@
       clip: rect(0, 900px, 0, 0);
     }
 
-    h1::before {
+    .glitch::before {
       left: 2px;
       text-shadow: -2px 0 red;
       animation: glitch 1.5s infinite linear;
     }
 
-    h1::after {
+    .glitch::after {
       left: -2px;
       text-shadow: -2px 0 blue;
       animation: glitch 1.5s infinite linear reverse;
@@ -69,9 +72,31 @@
       80% { clip: rect(90px, 9999px, 20px, 0); }
       90% { clip: rect(40px, 9999px, 90px, 0); }
     }
+
+    /* Blinking cursor */
+    @keyframes blinkCursor {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: white; }
+    }
   </style>
 </head>
 <body>
-  <h1>SmoothCube.xyz</h1>
+  <h1 class="glitch" data-text="SmoothCube.xyz"></h1>
+
+  <script>
+    const text = "SmoothCube.xyz";
+    const h1 = document.querySelector("h1");
+    let index = 0;
+
+    function typeEffect() {
+      if (index < text.length) {
+        h1.innerHTML += text[index];
+        index++;
+        setTimeout(typeEffect, 150); // Adjust speed here
+      }
+    }
+
+    typeEffect();
+  </script>
 </body>
 </html>
