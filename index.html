@@ -14,6 +14,7 @@
 
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -23,16 +24,25 @@
       overflow: hidden;
     }
 
-    h1 {
+    h1, h2 {
       font-size: 4rem;
-      position: relative;
       color: white;
       text-transform: uppercase;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
       border-right: 2px solid;
       animation: blinkCursor 0.7s steps(2) infinite;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 20px;
+      opacity: 0; /* Start invisible */
     }
 
     /* Glitch effect using pseudo-elements */
@@ -82,21 +92,46 @@
 </head>
 <body>
   <h1 class="glitch" data-text="SmoothCube.xyz"></h1>
+  <h2 id="subtext">Your digital playground</h2>
 
   <script>
-    const text = "SmoothCube.xyz";
+    const mainText = "SmoothCube.xyz";
+    const subText = "Your digital playground";
     const h1 = document.querySelector("h1");
+    const h2 = document.getElementById("subtext");
     let index = 0;
 
-    function typeEffect() {
-      if (index < text.length) {
-        h1.innerHTML += text[index];
+    function typeMainText() {
+      if (index < mainText.length) {
+        h1.innerHTML += mainText[index];
         index++;
-        setTimeout(typeEffect, 150); // Adjust speed here
+        setTimeout(typeMainText, 150); // Adjust speed here
+      } else {
+        // Hide the cursor animation once typing is complete
+        h1.style.borderRight = "none";
+        // Start typing subtext after a short delay
+        setTimeout(typeSubText, 500);
       }
     }
 
-    typeEffect();
+    function typeSubText() {
+      let subIndex = 0;
+      h2.style.opacity = 1; // Make subtext visible
+      h2.innerHTML = "";    // Clear any existing text (just in case)
+
+      function typeSubTextEffect() {
+        if (subIndex < subText.length) {
+          h2.innerHTML += subText[subIndex];
+          subIndex++;
+          setTimeout(typeSubTextEffect, 100); // Adjust subtext speed here
+        }
+      }
+
+      typeSubTextEffect();
+    }
+
+    // Start typing the main text
+    typeMainText();
   </script>
 </body>
 </html>
