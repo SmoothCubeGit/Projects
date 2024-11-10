@@ -70,20 +70,11 @@
 <body>
   <div class="terminal">
     <div class="glitch">Welcome, Hacker</div>
-    <p class="welcome-text">
-Initializing system...
-  ...
-Welcome to the CyberTerminal.
-
-You are now connected to the network.
-
-Begin your journey...
-    </p>
+    <p class="welcome-text" id="welcomeText"></p>
   </div>
 
   <script>
-    // Simple typing effect for welcome message
-    const welcomeText = document.querySelector('.welcome-text');
+    // Message to type
     const message = `
 Initializing system...
   ...
@@ -93,17 +84,21 @@ You are now connected to the network.
 
 Begin your journey...
 `;
+
+    // Typing effect for the welcome message
+    const welcomeTextElement = document.getElementById('welcomeText');
     let index = 0;
 
     function typeText() {
       if (index < message.length) {
-        welcomeText.innerHTML += message.charAt(index);
+        welcomeTextElement.innerHTML += message.charAt(index);
         index++;
         setTimeout(typeText, 50);
       }
     }
 
-    setTimeout(typeText, 500); // Start typing after a slight delay
+    // Start typing after a slight delay
+    setTimeout(typeText, 500);
   </script>
 </body>
 </html>
