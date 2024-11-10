@@ -108,6 +108,7 @@
       height: 100%;
       transform-style: preserve-3d;
       animation: spinCube 5s infinite linear;
+      filter: blur(5px); /* Apply blur to the cube */
     }
 
     .cube-face {
@@ -118,12 +119,13 @@
       border: 2px solid #fff;
     }
 
-    .front  { transform: translateZ(150px); }
-    .back   { transform: rotateY(180deg) translateZ(150px); }
-    .left   { transform: rotateY(-90deg) translateZ(150px); }
-    .right  { transform: rotateY(90deg) translateZ(150px); }
-    .top    { transform: rotateX(90deg) translateZ(150px); }
-    .bottom { transform: rotateX(-90deg) translateZ(150px); }
+    /* Color faces according to axes: x (red), y (blue), z (green) */
+    .front  { transform: translateZ(150px); background-color: green; }  /* Z-axis */
+    .back   { transform: rotateY(180deg) translateZ(150px); background-color: green; }  /* Z-axis */
+    .left   { transform: rotateY(-90deg) translateZ(150px); background-color: red; }    /* X-axis */
+    .right  { transform: rotateY(90deg) translateZ(150px); background-color: red; }     /* X-axis */
+    .top    { transform: rotateX(90deg) translateZ(150px); background-color: blue; }   /* Y-axis */
+    .bottom { transform: rotateX(-90deg) translateZ(150px); background-color: blue; }  /* Y-axis */
 
     @keyframes spinCube {
       0% { transform: rotateX(0) rotateY(0); }
