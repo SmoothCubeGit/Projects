@@ -14,14 +14,15 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: flex-start; /* Align text downward */
       height: 100vh;
       background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       overflow: hidden;
       position: relative;
+      padding-top: 50px; /* Adds some spacing at the top */
     }
 
     h1, h2, h3 {
@@ -44,10 +45,6 @@
          2px  2px 0 #000,
         0 0 8px rgba(0,0,0,0.8),
         0 0 16px rgba(0,0,0,0.6);
-    }
-
-    h1::before, h2::before {
-      display: none;
     }
 
     h1 {
@@ -125,9 +122,9 @@
 
     .cube-wrapper {
       position: absolute;
-      top: 50%;
+      top: 10%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       width: 300px;
       height: 300px;
       perspective: 600px;
