@@ -166,6 +166,10 @@
       border-right: 2px solid white;
       animation: blinkCursor 0.7s steps(2) infinite;
     }
+
+    #background-music {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -183,6 +187,11 @@
   <h1 class="glitch" data-text="SmoothCube.xyz"></h1>
   <h2 id="subtext">Shaping the Future</h2>
   <h3 id="cyclingText" class="typing-cursor"></h3>
+
+  <audio id="background-music" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     const mainText = "SmoothCube.xyz";
@@ -217,7 +226,7 @@
 
     function typeMainText() {
       if (index < mainText.length) {
-        h1.innerHTML += mainText[index];
+        h1.textContent += mainText[index];
         index++;
         setTimeout(typeMainText, 150);
       } else {
@@ -229,11 +238,11 @@
     function typeSubText() {
       let subIndex = 0;
       h2.style.opacity = 1;
-      h2.innerHTML = "";
+      h2.textContent = "";
 
       function typeSubTextEffect() {
         if (subIndex < subText.length) {
-          h2.innerHTML += subText[subIndex];
+          h2.textContent += subText[subIndex];
           subIndex++;
           setTimeout(typeSubTextEffect, 100);
         } else {
@@ -254,11 +263,11 @@
     function typePhrase() {
       let currentPhrase = phrases[currentPhraseIndex];
       let charIndex = 0;
-      cyclingText.innerHTML = "";
+      cyclingText.textContent = "";
 
       function typeChar() {
         if (charIndex < currentPhrase.length) {
-          cyclingText.innerHTML += currentPhrase[charIndex];
+          cyclingText.textContent += currentPhrase[charIndex];
           charIndex++;
           setTimeout(typeChar, 50);
         } else {
@@ -272,12 +281,12 @@
     }
 
     function erasePhrase() {
-      let text = cyclingText.innerHTML;
+      let text = cyclingText.textContent;
       
       function eraseChar() {
         if (text.length > 0) {
           text = text.slice(0, -1);
-          cyclingText.innerHTML = text;
+          cyclingText.textContent = text;
           setTimeout(eraseChar, 30);
         } else {
           currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
@@ -287,6 +296,38 @@
 
       eraseChar();
     }
+
+    // Add a button for sound
+    window.addEventListener('DOMContentLoaded', () => {
+      const music = document.getElementById('background-music');
+      const button = document.createElement('button');
+      button.style.position = 'fixed';
+      button.style.bottom = '20px';
+      button.style.right = '20px';
+      button.style.padding = '10px';
+      button.style.background = 'rgba(255, 255, 255, 0.2)';
+      button.style.border = '2px solid white';
+      button.style.color = 'white';
+      button.style.cursor = 'pointer';
+      button.style.zIndex = '999';
+      button.textContent = '🔇 Sound Off';
+      button.style.borderRadius = '5px';
+      
+      let isPlaying = false;
+      
+      button.addEventListener('click', () => {
+        if (isPlaying) {
+          music.pause();
+          button.textContent = '🔇 Sound Off';
+        } else {
+          music.play();
+          button.textContent = '🔊 Sound On';
+        }
+        isPlaying = !isPlaying;
+      });
+      
+      document.body.appendChild(button);
+    });
 
     typeMainText();
   </script>
