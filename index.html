@@ -166,6 +166,38 @@
       border-right: 2px solid white;
       animation: blinkCursor 0.7s steps(2) infinite;
     }
+
+    /* New Progress Bar Section */
+    .progress-container {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .progress-text {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .progress-bar-wrapper {
+      width: 80%;
+      height: 20px;
+      background-color: #444;
+      border-radius: 10px;
+      margin: 0 auto;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #00bfff;
+      width: 0%;
+      transition: width 0.5s;
+    }
   </style>
 </head>
 <body>
@@ -184,12 +216,21 @@
   <h2 id="subtext">Shaping the Future</h2>
   <h3 id="cyclingText" class="typing-cursor"></h3>
 
+  <!-- New Progress Section -->
+  <div class="progress-container">
+    <div class="progress-text">Creating Something Epic...</div>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
   <script>
     const mainText = "SmoothCube.net";
     const subText = "Shaping the Future";
     const h1 = document.querySelector("h1");
     const h2 = document.getElementById("subtext");
     const cyclingText = document.getElementById("cyclingText");
+    const progressBar = document.getElementById("progressBar");
     let index = 0;
 
     const phrases = [
@@ -287,6 +328,21 @@
 
       eraseChar();
     }
+
+    function updateProgressBar(progress) {
+      progressBar.style.width = progress + "%";
+    }
+
+    // Simulate progress
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+      if (progress < 100) {
+        progress += 1;
+        updateProgressBar(progress);
+      } else {
+        clearInterval(progressInterval);
+      }
+    }, 100); // Update every 100ms
 
     typeMainText();
   </script>
