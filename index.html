@@ -18,8 +18,8 @@
       align-items: center;
       height: 100vh;
       background-color: #000;
-      color: #0f0;
-      font-family: "Courier New", monospace;
+      color: #fff;
+      font-family: Arial, sans-serif;
       overflow: hidden;
       position: relative;
     }
@@ -166,39 +166,6 @@
       border-right: 2px solid white;
       animation: blinkCursor 0.7s steps(2) infinite;
     }
-
-    /* Custom Progress Bar */
-    .progress-container {
-      width: 80%;
-      margin-top: 30px;
-      background: #111;
-      padding: 2px;
-      border: 1px solid #0f0;
-      text-align: center;
-      font-size: 1.2rem;
-      position: relative;
-    }
-
-    .progress-bar {
-      width: 0%;
-      background-color: #fff;
-      height: 20px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: width 0.5s;
-    }
-
-    .progress-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: "Courier New", monospace;
-      font-size: 1.2rem;
-      color: #0f0;
-    }
-
   </style>
 </head>
 <body>
@@ -217,20 +184,12 @@
   <h2 id="subtext">Shaping the Future</h2>
   <h3 id="cyclingText" class="typing-cursor"></h3>
 
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
-    <div class="progress-text" id="progressText">Creating Something Epic...</div>
-  </div>
-
   <script>
     const mainText = "SmoothCube.net";
     const subText = "Shaping the Future";
     const h1 = document.querySelector("h1");
     const h2 = document.getElementById("subtext");
     const cyclingText = document.getElementById("cyclingText");
-    const progressBar = document.getElementById("progressBar");
-    const progressText = document.getElementById("progressText");
-
     let index = 0;
 
     const phrases = [
@@ -329,19 +288,7 @@
       eraseChar();
     }
 
-    // Simulate Progress Bar
-    let progress = 0;
-    function updateProgress() {
-      if (progress < 100) {
-        progress++;
-        progressBar.style.width = progress + "%";
-        progressText.innerHTML = "Creating Something Epic... " + progress + "%";
-        setTimeout(updateProgress, 100);
-      }
-    }
-
     typeMainText();
-    updateProgress(); // Start progress simulation
   </script>
 </body>
 </html>
