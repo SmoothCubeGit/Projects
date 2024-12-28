@@ -167,24 +167,25 @@
       animation: blinkCursor 0.7s steps(2) infinite;
     }
 
-    .button {
-      margin-top: 30px;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      color: #fff;
-      background-color: #333;
-      border: 2px solid #fff;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+    .button-container {
+      margin-top: 100px; /* Added space to push the button further down */
     }
 
-    .button:hover {
-      background-color: #555;
-      transform: scale(1.05);
+    .link-button {
+      padding: 10px 20px;
+      background-color: #444;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
+
+    .link-button:hover {
+      background-color: #666;
+    }
+
   </style>
 </head>
 <body>
@@ -203,7 +204,11 @@
   <h2 id="subtext">Shaping the Future</h2>
   <h3 id="cyclingText" class="typing-cursor"></h3>
 
-  <a href="https://www.smoothcube.net/gitlfsdev/" class="button">Visit Git LFS Dev</a>
+  <div class="button-container">
+    <a href="https://www.smoothcube.net/gitlfsdev/">
+      <button class="link-button">Visit GitLFS Dev</button>
+    </a>
+  </div>
 
   <script>
     const mainText = "SmoothCube.net";
