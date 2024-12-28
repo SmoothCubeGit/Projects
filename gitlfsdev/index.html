@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Package</title>
+    <title>Download with Progress</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -26,6 +27,7 @@
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
         }
 
         .download-button:hover {
@@ -36,9 +38,66 @@
         .download-button:active {
             transform: translateY(0);
         }
+
+        #progress-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <a href="https://www.smoothcube.net/gitlfsdev/package.exe" class="download-button" download="Package.exe">Download Package</a>
+    <button class="download-button" id="downloadBtn">Download Package</button>
+    <p id="progress-text">Click the button to start the download.</p>
+
+    <script>
+        document.getElementById("downloadBtn").addEventListener("click", async () => {
+            const downloadUrl = "https://www.smoothcube.net/gitlfsdev/package.exe";
+            const progressText = document.getElementById("progress-text");
+
+            try {
+                // Start fetching the file
+                const response = await fetch(downloadUrl);
+
+                if (!response.ok) throw new Error("Failed to download the file.");
+
+                const totalBytes = parseInt(response.headers.get("Content-Length"), 10);
+                let loadedBytes = 0;
+
+                // Create a readable stream and track progress
+                const reader = response.body.getReader();
+                const chunks = [];
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    chunks.push(value);
+                    loadedBytes += value.length;
+
+                    // Update progress text
+                    const progress = ((loadedBytes / totalBytes) * 100).toFixed(2);
+                    progressText.textContent = `Downloading: ${progress}% (${loadedBytes} of ${totalBytes} bytes)`;
+                }
+
+                // Combine the downloaded chunks
+                const blob = new Blob(chunks);
+                const url = URL.createObjectURL(blob);
+
+                // Create a temporary anchor to trigger download
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "Package.exe";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+
+                // Revoke the URL and update text
+                URL.revokeObjectURL(url);
+                progressText.textContent = "Download complete!";
+            } catch (error) {
+                progressText.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
 </body>
 </html>
