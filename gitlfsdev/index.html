@@ -154,7 +154,7 @@
 
                     // Update progress text
                     const progress = ((loadedBytes / totalBytes) * 100).toFixed(2);
-                    progressText.textContent = Downloading: ${progress}% (${loadedBytes} of ${totalBytes} bytes);
+                    progressText.textContent = `Downloading: ${progress}% (${loadedBytes} of ${totalBytes} bytes)`;
                 }
 
                 // Combine the downloaded chunks
@@ -164,7 +164,7 @@
                 // Create a temporary anchor to trigger download
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "GitLFS.exe";
+                a.download = "GitLFSDev.exe";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
@@ -173,9 +173,9 @@
                 URL.revokeObjectURL(url);
                 progressText.textContent = "Download complete!";
             } catch (error) {
-                progressText.textContent = Error: ${error.message};
+                progressText.textContent = `Error: ${error.message}`;
             }
         });
     </script>
 </body>
-</html> 
+</html>
