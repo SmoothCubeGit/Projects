@@ -77,12 +77,22 @@
             transform: translateY(2px);
         }
 
-        /* Progress Text */
-        #progress-text {
-            margin-top: 15px;
-            font-size: 1rem;
-            font-style: italic;
-            color: #aaaaaa;
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #444;
+            height: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #76c7c0;
+            border-radius: 10px;
+            transition: width 0.3s ease-in-out;
         }
 
         /* Footer */
@@ -121,6 +131,9 @@
         <h1>GitLFSDev</h1>
         <p>Handle large files like a Pro</p>
         <button class="download-button" id="downloadBtn">Download GitLFSDev</button>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <p id="progress-text">Click the button to begin downloading GitLFSDev.</p>
     </div>
 
@@ -132,6 +145,7 @@
         document.getElementById("downloadBtn").addEventListener("click", async () => {
             const downloadUrl = "https://www.smoothcube.net/gitlfsdev/package.exe";
             const progressText = document.getElementById("progress-text");
+            const progressBar = document.getElementById("progressBar");
 
             try {
                 // Start fetching the file
@@ -152,9 +166,12 @@
                     chunks.push(value);
                     loadedBytes += value.length;
 
-                    // Update progress text
+                    // Update progress bar and text
                     const progress = ((loadedBytes / totalBytes) * 100).toFixed(2);
                     progressText.textContent = `Downloading: ${progress}% (${loadedBytes} of ${totalBytes} bytes)`;
+
+                    // Update progress bar width
+                    progressBar.style.width = `${progress}%`;
                 }
 
                 // Combine the downloaded chunks
@@ -164,7 +181,7 @@
                 // Create a temporary anchor to trigger download
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "GitLFS.exe";
+                a.download = "GitLFSDev.exe";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
