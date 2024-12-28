@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Package</title>
+    <title>GitLFSDev</title>
     <style>
         /* General Reset */
         * {
@@ -27,7 +27,7 @@
         /* Main Content Styles */
         .container {
             text-align: center;
-            max-width: 600px;
+            max-width: 650px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
@@ -37,7 +37,7 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 15px;
             background: linear-gradient(to right, #ffffff, #888888);
             -webkit-background-clip: text;
@@ -46,7 +46,7 @@
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 25px;
             color: #cccccc;
         }
@@ -55,7 +55,7 @@
         .download-button {
             display: inline-block;
             padding: 15px 40px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #121212;
             background-color: #ffffff;
@@ -118,14 +118,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Download Your Package</h1>
-        <p>Get started by downloading your software. It's fast, secure, and easy to use.</p>
-        <button class="download-button" id="downloadBtn">Download Package</button>
-        <p id="progress-text">Click the button to begin the download.</p>
+        <h1>GitLFS</h1>
+        <p>Handle large files like a Pro</p>
+        <button class="download-button" id="downloadBtn">Download GitLFSDev</button>
+        <p id="progress-text">Click the button to begin downloading GitLFS.</p>
     </div>
 
     <footer>
-        &copy; 2024 <a href="https://www.smoothcube.net">SmoothCube</a> | All Rights Reserved
+        &copy; 2024 <a href="https://www.smoothcube.net">SmoothCube</a> | Powered by GitLFS
     </footer>
 
     <script>
@@ -164,7 +164,7 @@
                 // Create a temporary anchor to trigger download
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "Package.exe";
+                a.download = "GitLFS.exe";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
