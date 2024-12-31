@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1, h2, h3 {
+      font-size: 4rem;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000,
+        -2px -2px 0 #000,  
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+        0 0 8px rgba(0,0,0,0.8),
+        0 0 16px rgba(0,0,0,0.6);
+    }
+
+    h1::before, h2::before {
+      display: none;
+    }
+
+    h1 {
+      border-right: 2px solid;
+      animation: blinkCursor 0.7s steps(2) infinite;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 20px;
+      opacity: 0;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      opacity: 0;
+      text-align: center;
+      border-right: 2px solid white;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: white;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+      text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 red,
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+      animation: glitch 1.5s infinite linear;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 blue,
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+      animation: glitch 1.5s infinite linear reverse;
+    }
+
+    @keyframes glitch {
+      0%, 100% { clip: rect(0, 900px, 0, 0); }
+      10% { clip: rect(10px, 9999px, 120px, 0); }
+      20% { clip: rect(80px, 9999px, 30px, 0); }
+      30% { clip: rect(40px, 9999px, 90px, 0); }
+      40% { clip: rect(70px, 9999px, 50px, 0); }
+      50% { clip: rect(60px, 9999px, 80px, 0); }
+      60% { clip: rect(20px, 9999px, 40px, 0); }
+      70% { clip: rect(50px, 9999px, 70px, 0); }
+      80% { clip: rect(90px, 9999px, 20px, 0); }
+      90% { clip: rect(40px, 9999px, 90px, 0); }
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: white; }
+    }
+
+    .cube-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      perspective: 600px;
+      z-index: -2;
+    }
+
+    .cube {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: spinCube 5s infinite linear;
+    }
+
+    .cube-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 5px solid white;
+    }
+
+    .front  { transform: translateZ(150px); }
+    .back   { transform: rotateY(180deg) translateZ(150px); }
+    .left   { transform: rotateY(-90deg) translateZ(150px); }
+    .right  { transform: rotateY(90deg) translateZ(150px); }
+    .top    { transform: rotateX(90deg) translateZ(150px); }
+    .bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+    @keyframes spinCube {
+      0% { transform: rotateX(0) rotateY(0); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    .typing-cursor {
+      border-right: 2px solid white;
+      animation: blinkCursor 0.7s steps(2) infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="cube-wrapper">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+  </div>
+
+  <h1 class="glitch" data-text="SmoothCube.net"></h1>
+  <h2 id="subtext">Shaping the Future</h2>
+  <h3 id="cyclingText" class="typing-cursor"></h3>
+
+  <script>
+    const mainText = "SmoothCube.net";
+    const subText = "Shaping the Future";
+    const h1 = document.querySelector("h1");
+    const h2 = document.getElementById("subtext");
+    const cyclingText = document.getElementById("cyclingText");
+    let index = 0;
+
+    const phrases = [
+      "One line of code at a time",
+      "One shape at a time",
+      "One HTTP request at a time",
+      "One polygon at a time",
+      "One game at a time",
+      "One feature at a time",
+      "One pixel at a time",
+      "One frame at a time",
+      "One algorithm at a time",
+      "One bug fix at a time",
+      "One render at a time",
+      "One texture at a time",
+      "One level at a time",
+      "One module at a time",
+      "One asset at a time",
+      "One mechanic at a time",
+      "One milestone at a time",
+      "One iteration at a time",
+      "One prototype at a time",
+      "One update at a time"
+    ];
+
+    function typeMainText() {
+      if (index < mainText.length) {
+        h1.innerHTML += mainText[index];
+        index++;
+        setTimeout(typeMainText, 150);
+      } else {
+        h1.style.borderRight = "none";
+        setTimeout(typeSubText, 500);
+      }
+    }
+
+    function typeSubText() {
+      let subIndex = 0;
+      h2.style.opacity = 1;
+      h2.innerHTML = "";
+
+      function typeSubTextEffect() {
+        if (subIndex < subText.length) {
+          h2.innerHTML += subText[subIndex];
+          subIndex++;
+          setTimeout(typeSubTextEffect, 100);
+        } else {
+          setTimeout(startCyclingText, 1000);
+        }
+      }
+
+      typeSubTextEffect();
+    }
+
+    let currentPhraseIndex = 0;
+
+    function startCyclingText() {
+      cyclingText.style.opacity = 1;
+      typePhrase();
+    }
+
+    function typePhrase() {
+      let currentPhrase = phrases[currentPhraseIndex];
+      let charIndex = 0;
+      cyclingText.innerHTML = "";
+
+      function typeChar() {
+        if (charIndex < currentPhrase.length) {
+          cyclingText.innerHTML += currentPhrase[charIndex];
+          charIndex++;
+          setTimeout(typeChar, 50);
+        } else {
+          setTimeout(() => {
+            erasePhrase();
+          }, 2000);
+        }
+      }
+
+      typeChar();
+    }
+
+    function erasePhrase() {
+      let text = cyclingText.innerHTML;
+      
+      function eraseChar() {
+        if (text.length > 0) {
+          text = text.slice(0, -1);
+          cyclingText.innerHTML = text;
+          setTimeout(eraseChar, 30);
+        } else {
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          setTimeout(typePhrase, 500);
+        }
+      }
+
+      eraseChar();
+    }
+
+    typeMainText();
+  </script>
+</body>
+</html>
