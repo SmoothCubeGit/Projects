@@ -3,19 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord</title>
+    <title>Redirecting...</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .message {
+            text-align: center;
+        }
+        .message h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .message p {
+            font-size: 1rem;
+            color: #bbbbbb;
+        }
+    </style>
     <script>
-        function redirectAndClose() {
+        function redirect() {
             window.location.href = "https://discord.gg/GJqr7fDMkt";
-            setTimeout(() => {
-                window.close();
-            }, 1000);
         }
 
-        window.onload = redirectAndClose;
+        window.onload = redirect;
     </script>
 </head>
 <body>
-    <p>Redirecting you to the desired page...</p>
+    <div class="message">
+        <h1>Redirecting...</h1>
+        <p>You will be taken to the Discord invite page shortly.</p>
+    </div>
 </body>
 </html>
