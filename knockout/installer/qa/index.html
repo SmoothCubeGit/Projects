@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knockout Installer</title>
+    <title>Knockout Installer (QA)</title>
     <style>
         /* General Reset */
         * {
@@ -118,9 +118,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Knockout</h1>
+        <h1>Knockout - QA release</h1>
         <p>Knock 'em</p>
-        <button class="download-button" id="downloadBtn">Download Knockout</button>
+        <button class="download-button" id="downloadBtn">Download Knockout (QA)</button>
         <p id="progress-text">Click the button to begin downloading Knockout.</p>
     </div>
 
@@ -164,7 +164,7 @@
                 // Create a temporary anchor to trigger download
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "KnockInstall.exe";
+                a.download = "QAKnock.exe";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
