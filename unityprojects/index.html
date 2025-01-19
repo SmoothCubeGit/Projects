@@ -10,48 +10,59 @@
             margin: 0;
             padding: 0;
             background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text */
+            color: #e0e0e0; /* Light gray text */
             text-align: center;
+            font-size: 1.2em; /* Increase general text size */
         }
         header {
-            background-color: #bb86fc; /* Purple background */
-            color: #121212; /* Dark text */
-            padding: 20px;
+            background-color: #1f1f1f; /* Dark gray background */
+            color: #ffffff; /* White text */
+            padding: 30px; /* More padding for a larger header */
         }
         h1 {
             margin: 0;
+            font-size: 2em; /* Larger header text */
         }
         nav {
-            margin: 20px 0;
+            margin: 30px 0;
         }
-        a {
-            text-decoration: none;
-            color: #bb86fc; /* Light purple */
-            font-size: 1.2em;
-            margin: 10px 0;
-            display: block;
-            transition: color 0.3s;
+        button {
+            background-color: #333; /* Dark gray button */
+            color: #e0e0e0; /* Light gray text */
+            font-size: 1.5em; /* Larger button text */
+            padding: 15px 30px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        a:hover {
-            color: #3700b3; /* Darker purple on hover */
+        button:hover {
+            background-color: #555; /* Lighter gray when hovered */
         }
         footer {
-            margin-top: 20px;
-            background-color: #bb86fc;
-            color: #121212;
-            padding: 10px;
+            margin-top: 30px;
+            background-color: #1f1f1f; /* Dark gray footer */
+            color: #ffffff; /* White text */
+            padding: 15px; /* More padding for footer */
+            font-size: 1.5em; /* Larger footer text */
         }
     </style>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url; // Change current page
+        }
+    </script>
 </head>
 <body>
     <header>
-        <p>Explore my devlogs below!</p>
+        <h1>Explore my devlogs below!</h1>
     </header>
 
     <nav>
-        <a href="https://www.smoothcube.net/unityprojects/knockout" target="_blank">Knockout</a>
-        <a href="https://www.smoothcube.net/unityprojects/genesis" target="_blank">Genesis</a>
-        <a href="https://www.smoothcube.net/unityprojects/socialspace" target="_blank">Social Space</a>
+        <button onclick="navigateTo('https://www.smoothcube.net/unityprojects/knockout')">Knockout</button>
+        <button onclick="navigateTo('https://www.smoothcube.net/unityprojects/genesis')">Genesis</button>
+        <button onclick="navigateTo('https://www.smoothcube.net/unityprojects/socialspace')">Social Space</button>
     </nav>
 
     <footer>
