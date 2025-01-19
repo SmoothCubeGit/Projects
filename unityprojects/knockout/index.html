@@ -1,1 +1,154 @@
-AA
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knockout Devlog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul, ol {
+            color: #e0e0e0;
+        }
+        hr {
+            border: 1px solid #333;
+        }
+        .video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Devlog: Knockout - Multiplayer Battle Royale FPS</h1>
+
+        <h2>Overview</h2>
+        <p><em>Knockout</em> is a multiplayer battle royale first-person shooter designed to provide a simple yet functional experience. The primary focus was on creating a multiplayer backend system alongside several core gameplay elements to outline the basic structure of a battle royale game. This project was completed within a month, and it served as an opportunity to learn and implement foundational systems for such games.</p>
+
+        <hr>
+
+        <h2>Features and Systems Created</h2>
+
+        <h3>Multiplayer Backend</h3>
+        <ul>
+            <li><strong>Hosting:</strong> Developed using Photon Unity Networking (PUN) for reliable multiplayer hosting and synchronization.</li>
+            <li><strong>Lobby System:</strong> Implemented a lobby system where players can join, wait, and start matches together.</li>
+        </ul>
+
+        <h3>Environment</h3>
+        <ul>
+            <li><strong>Island Design:</strong>
+                <ul>
+                    <li>Used Unity's Terrain Tool to manually sculpt an island.</li>
+                    <li>Populated the terrain with trees and grass using a nature pack from the Unity Asset Store.</li>
+                </ul>
+            </li>
+            <li><strong>Custom Models:</strong>
+                <ul>
+                    <li>Created a custom plane model in Blender to serve as the battle bus.</li>
+                    <li>Designed a player character model in Blender.</li>
+                    <li>Used a gun model sourced from the Unity Asset Store.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Audio and Visual Effects</h3>
+        <ul>
+            <li><strong>3D Audio:</strong> Added walking sound effects with spatial audio to enhance immersion.</li>
+            <li><strong>Circle System:</strong>
+                <ul>
+                    <li>Procedural scaling to dynamically reduce the playable area over time.</li>
+                    <li>Integrated dynamic lighting to visually emphasize the shrinking zone.</li>
+                    <li>Contact Shader: Added a white edge contour to highlight the circle boundary.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Player Systems</h3>
+        <ul>
+            <li><strong>State Synchronization:</strong> Synced player states such as moving, skydiving, and parachuting across all clients.</li>
+            <li><strong>Movement:</strong>
+                <ul>
+                    <li>Procedural gunfire animation for realistic shooting.</li>
+                    <li>Procedural head bob for a natural walking effect.</li>
+                    <li>Stamina system to manage sprinting and energy usage.</li>
+                </ul>
+            </li>
+            <li><strong>Health and Gun Systems:</strong> Integrated health mechanics and damage calculation to support combat interactions.</li>
+        </ul>
+
+        <h3>Core Mechanics</h3>
+        <ul>
+            <li><strong>Battle Bus and Spawn System:</strong> Created a system where players drop from the plane and transition smoothly into the game world via skydiving and parachuting.</li>
+            <li><strong>Circle System:</strong> Designed a procedural shrinking zone to guide player movement and intensify gameplay toward the end of the match.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Development Highlights</h2>
+
+        <h3>Most Satisfying Achievements</h3>
+        <ol>
+            <li><strong>Circle System:</strong> The dynamic scaling and visual effects of the shrinking zone had a significant impact on gameplay, making it one of the most rewarding features to implement.</li>
+            <li><strong>Player Dropping System:</strong> The parachuting and skydiving mechanics added a polished and immersive entry point to each match, which was a complex yet fulfilling system to develop.</li>
+        </ol>
+
+        <h3>Challenges and Improvements</h3>
+        <ol>
+            <li><strong>Performance Optimization:</strong>
+                <ul>
+                    <li>Frame rate issues arose due to high triangle counts and inefficient asset management.</li>
+                    <li>Future improvements could focus on better triangle management and optimized rendering techniques.</li>
+                </ul>
+            </li>
+            <li><strong>Asset Placement:</strong> Manually populating the terrain with trees and grass was time-consuming; procedural placement tools could streamline this process in future iterations.</li>
+        </ol>
+
+        <hr>
+
+        <h2>Lessons Learned</h2>
+        <p>This project provided invaluable experience in:</p>
+        <ul>
+            <li>Building a multiplayer infrastructure and synchronizing player states.</li>
+            <li>Designing and implementing core game mechanics, such as shrinking play zones and dynamic spawning systems.</li>
+            <li>Using procedural animations and effects to enhance visual and gameplay quality.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Conclusion</h2>
+        <p><em>Knockout</em> successfully met its goal of creating a basic yet functional battle royale experience. While there is room for optimization and improvement, the project served as a significant learning experience in game development, particularly in multiplayer systems and complex gameplay mechanics.</p>
+
+        <div class="video-container">
+            <h2>Watch the Preview Video</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0FjvFSkVZuY" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</body>
+</html>
