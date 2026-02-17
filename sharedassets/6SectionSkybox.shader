@@ -49,8 +49,8 @@ Shader "Custom/SimpleSixBandSkybox"
             
             fixed4 frag (v2f i) : SV_Target
             {
-                float y = normalize(i.dir).y; // -1 to 1
-                y = y * 0.5 + 0.5; // 0 to 1
+                float y = normalize(i.dir).y;
+                y = y * 0.5 + 0.5;
                 
                 fixed4 color = _Color6;
                 
@@ -60,7 +60,6 @@ Shader "Custom/SimpleSixBandSkybox"
                 color = lerp(color, _Color2, smoothstep(0.6 - _Blend, 0.6 + _Blend, y));
                 color = lerp(color, _Color1, smoothstep(0.8 - _Blend, 0.8 + _Blend, y));
                 
-                // Add horizon line
                 float horizon = abs(y - 0.5);
                 float horizonLine = 1.0 - smoothstep(0, _HorizonWidth, horizon);
                 color = lerp(color, _HorizonColor, horizonLine * _HorizonIntensity);
@@ -70,4 +69,5 @@ Shader "Custom/SimpleSixBandSkybox"
             ENDCG
         }
     }
+
 }
