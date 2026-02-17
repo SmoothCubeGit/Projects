@@ -42,7 +42,7 @@ Shader "Space/ObjectSpaceTiling"
                 float3 scaledLocalPos : TEXCOORD0;
                 float3 normalWS       : TEXCOORD1;
                 float3 localNormal    : TEXCOORD3;
-                float3 positionWS     : TEXCOORD4; // Required for correct shadow mapping
+                float3 positionWS     : TEXCOORD4;
             };
 
             TEXTURE2D(_MainTex);
@@ -58,17 +58,14 @@ Shader "Space/ObjectSpaceTiling"
             {
                 Varyings output;
                 
-                // 1. Calculate Standard World Position
                 float3 worldPos = TransformObjectToWorld(input.positionOS.xyz);
                 output.positionWS = worldPos;
                 
-                // 2. Standard Clip Space Transformation
                 output.positionCS = TransformWorldToHClip(worldPos);
                 
                 output.normalWS = TransformObjectToWorldNormal(input.normalOS);
                 output.localNormal = input.normalOS;
 
-                // 3. Scale Extraction for Triplanar UVs
                 float4x4 m = GetObjectToWorldMatrix();
                 float3 scale = float3(
                     length(float3(m[0][0], m[1][0], m[2][0])),
@@ -82,18 +79,15 @@ Shader "Space/ObjectSpaceTiling"
 
             half4 frag(Varyings input) : SV_Target
             {
-                // Triplanar Setup
                 float3 uv = input.scaledLocalPos * _Tiling;
                 float3 nAbs = abs(input.localNormal);
                 float3 signN = sign(input.localNormal);
                 
-                // Hard-edge selection logic
                 float3 weights = 0;
                 if (nAbs.x >= nAbs.y && nAbs.x >= nAbs.z) weights.x = 1;
                 else if (nAbs.y >= nAbs.z) weights.y = 1;
                 else weights.z = 1;
 
-                // UV Mapping per axis
                 float2 uvX = float2(uv.z * signN.x, uv.y);
                 float2 uvY = float2(uv.x * signN.y, uv.z);
                 float2 uvZ = float2(uv.x * -signN.z, uv.y);
@@ -104,8 +98,6 @@ Shader "Space/ObjectSpaceTiling"
 
                 half3 albedo = tex.rgb * _Color.rgb;
 
-                // --- CORRECTED LIGHTING ---
-                // We use the actual world position for shadow coordinates
                 float4 shadowCoord = TransformWorldToShadowCoord(input.positionWS);
                 
                 Light mainLight = GetMainLight(shadowCoord);
@@ -114,7 +106,6 @@ Shader "Space/ObjectSpaceTiling"
                 half diffuse = saturate(dot(normalWS, mainLight.direction));
                 half3 ambient = SampleSH(normalWS) * albedo;
                 
-                // Combine lighting with shadow attenuation
                 half3 lighting = mainLight.color * (diffuse * mainLight.shadowAttenuation);
                 
                 return half4(albedo * lighting + ambient, 1.0);
@@ -122,7 +113,6 @@ Shader "Space/ObjectSpaceTiling"
             ENDHLSL
         }
 
-        // Shadow caster pass is essential for this object to cast shadows onto others
         UsePass "Universal Render Pipeline/Lit/ShadowCaster"
     }
 }
