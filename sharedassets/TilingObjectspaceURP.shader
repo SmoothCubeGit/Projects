@@ -5,7 +5,6 @@ Shader "Space/ObjectSpaceTiling_Stereo_Fixed"
         _Color("Main Color", Color) = (1, 1, 1, 1)
         [NoScaleOffset] _MainTex("Albedo (RGB)", 2D) = "white" {}
         _Tiling("Tiling Factor", Float) = 1.0
-        _Smoothness("Smoothness", Range(0, 1)) = 0.5
     }
 
     SubShader
@@ -54,7 +53,6 @@ Shader "Space/ObjectSpaceTiling_Stereo_Fixed"
             CBUFFER_START(UnityPerMaterial)
                 float4 _Color;
                 float _Tiling;
-                float _Smoothness;
             CBUFFER_END
 
             Varyings vert(Attributes input)
@@ -90,7 +88,6 @@ Shader "Space/ObjectSpaceTiling_Stereo_Fixed"
                 float3 nAbs = abs(input.localNormal);
                 float3 signN = sign(input.localNormal);
                 
-                // FIXED WEIGHT LOGIC: Use a clearer comparison to avoid syntax issues
                 float3 weights = 0;
                 if (nAbs.x >= nAbs.y && nAbs.x >= nAbs.z) { weights.x = 1.0; }
                 else if (nAbs.y >= nAbs.z) { weights.y = 1.0; }
